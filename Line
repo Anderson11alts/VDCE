@@ -1,0 +1,41 @@
+import numpy as np
+import cv2
+
+
+class Line(object):
+    def __init__(self,src, dest,img,points):
+        #create a line
+        for i in xrange(dest+1):
+          cv2.line(img,(i,src),(i,src),(255,255,255),10)
+          points.append([i,src])
+        print 'Points: '+str(points)
+        cv2.imshow('img',img)
+        print 'Line 1 drawn'
+
+    def scanner(self,points,img):
+        for i in xrange(len(points)):
+            x  = points[i][0]
+            y = points[i][1]
+            #coloring the line to black again
+            cv2.line(img,(x,y),(x,y),(0,0,0),10)
+
+        #printing the next line
+        for i in xrange(len(points)):
+          #Updating points coordinates
+          points[i][1] = y+1
+          cv2.line(img,(i,y+1),(i,y+1),(255,255,255),10)
+          print 'New Line: '+str(i)+' '+str(y+1)
+
+        cv2.imshow('img',img)
+        print 'Updated Points: '+str(points)
+
+class Square(object):
+    '''This class construct a'''
+    def __init__(self, lenght, center_point, img):
+        top_points = []
+        bottom_points = []
+        left_points = []
+        right_points = []
+
+        #create a square with center: center_point
+        for i in xrange
